@@ -3,11 +3,13 @@ import cors from 'cors';
 
 const app = express();
 
-// ✅ Allow multiple origins (Vercel + Localhost)
+// ✅ Allow multiple origins (Vercel + Localhost + VPS IP)
 const allowedOrigins = [
   'https://myjokes-app.vercel.app',
   'http://127.0.0.1:5500',
-  'http://localhost:5500'
+  'http://localhost:5500',
+  'http://62.72.12.52',           // ✅ Added: VPS HTTP
+  'https://62.72.12.52'            // ✅ Added: VPS HTTPS (for future SSL)
 ];
 
 const corsOptions = {
@@ -36,7 +38,7 @@ app.get('/api/jokes', (req, res) => {
       id: 1,
       title: 'Parallel Lines',
       content:
-        'Parallel lines have so much in common. It’s a shame they’ll never meet.',
+        'Parallel lines have so much in common. It's a shame they'll never meet.',
     },
     {
       id: 2,
