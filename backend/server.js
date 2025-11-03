@@ -38,7 +38,7 @@ app.get('/api/jokes', (req, res) => {
       id: 1,
       title: 'Parallel Lines',
       content:
-        'Parallel lines have so much in common. It's a shame they'll never meet.',
+        "Parallel lines have so much in common. It's a shame they'll never meet.",
     },
     {
       id: 2,
