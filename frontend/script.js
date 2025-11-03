@@ -7,7 +7,8 @@ fetchBtn.addEventListener('click', async () => {
   loader.classList.remove('hidden');
   jokeContainer.innerHTML = '';
   try {
-    const res = await fetch('http://localhost:3000/api/jokes');
+    // ✅ Updated to use your VPS IP
+    const res = await fetch('http://62.72.12.52/api/jokes');
     if (!res.ok) throw new Error('Network error');
     const jokes = await res.json();
 

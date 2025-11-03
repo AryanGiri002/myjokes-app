@@ -1,10 +1,25 @@
 import express from 'express';
-import cors from 'cors'
+import cors from 'cors';
 
 const app = express();
+
+// ✅ Allow multiple origins (Vercel + Localhost)
+const allowedOrigins = [
+  'https://myjokes-app.vercel.app',
+  'http://127.0.0.1:5500',
+  'http://localhost:5500'
+];
+
 const corsOptions = {
-    // Allow only requests from this domain
-    origin: 'http://127.0.0.1:5500',
+  origin: function (origin, callback) {
+    // Allow requests with no origin (like Postman or curl)
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    } else {
+      return callback(new Error('CORS not allowed for this origin'));
+    }
+  },
 };
 
 app.use(cors(corsOptions));
@@ -49,10 +64,9 @@ app.get('/api/jokes', (req, res) => {
     },
   ];
 
-  res.send(jokes);
-
+  res.json(jokes);
 });
 
 app.listen(port, () => {
-  console.log(`Serve at http://localhost:${port}`);
+  console.log(`✅ Server running at http://localhost:${port}`);
 });
